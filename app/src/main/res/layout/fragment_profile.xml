@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.notifications.NotificationsFragment">
+    tools:context=".ui.profile.ProfileFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,10 +23,13 @@
         android:padding="16dp">
 
         <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:id="@+id/backIcon"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:clickable="true"
             android:padding="10dp"
-            android:src="@drawable/ic_arrow_back_24dp" />
+            android:src="@drawable/ic_arrow_back_24dp"
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <Space
             android:layout_width="wrap_content"
@@ -552,7 +555,7 @@
             </LinearLayout>
         </LinearLayout>
 
-            <!--Experience Bottom Cards-->
+            <!--Posts Bottom Cards-->
             <LinearLayout
                 android:id="@+id/experience"
                 android:layout_width="match_parent"
@@ -589,7 +592,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
 
-                                android:text="Android Developer"
+                                android:text="what is carnovo fingerprint?"
                                 android:textSize="14sp"
                                 android:textStyle="bold" />
 
@@ -656,7 +659,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
 
-                                android:text="Android Developer"
+                                android:text="what is carnovo fingerprint"
                                 android:textSize="14sp"
                                 android:textStyle="bold" />
 
@@ -707,6 +710,11 @@
                         android:layout_weight="2"
                         android:gravity="center_vertical">
 
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:padding="6dp"
+                            android:src="@drawable/android" />
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -718,7 +726,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
 
-                                android:text="Android Developer"
+                                android:text="what is carnovo fingerprint?"
                                 android:textSize="14sp"
                                 android:textStyle="bold" />
 
