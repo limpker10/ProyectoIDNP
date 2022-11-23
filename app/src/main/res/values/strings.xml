@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">PlacticsApp</string>
+    <string name="app_name">PlacticApp</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -39,5 +39,7 @@
     <string name="skills">Skills</string>
     <string name="ratings">Star Ratings</string>
     <string name="samplereview">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pretium bibendum sapien, ut euismod massa. Duis convallis sem sed turpis elementum auctor.</string>
+    <string name="logros">logros</string>
+    <string name="avisos">avisos</string>
 
 </resources>

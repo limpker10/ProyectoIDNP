@@ -226,7 +226,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="20dp"
-                            android:text="MY Info"
+                            android:text="Profile"
                             android:textColor="@color/black"
                             android:textSize="18sp" />
 
@@ -259,8 +259,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="20dp"
 
-                            android:text="Career"
-                            android:textColor="@color/white"
+                            android:text="@string/logros"
+                            android:textColor="@color/black"
                             android:textSize="18sp" />
 
                     </LinearLayout>
@@ -285,15 +285,15 @@
                             android:layout_width="24dp"
                             android:layout_height="24dp"
                             android:layout_marginTop="18dp"
-                            android:src="@drawable/ic_email" />
+                            android:src="@drawable/ic_notifications_black_24dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="20dp"
 
-                            android:text="Medical"
-                            android:textColor="@color/white"
+                            android:text="Avisos"
+                            android:textColor="@color/black"
                             android:textSize="18sp" />
 
                     </LinearLayout>
