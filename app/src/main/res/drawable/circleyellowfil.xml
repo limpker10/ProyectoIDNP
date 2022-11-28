@@ -3,8 +3,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="oval">
 
-    <solid android:color="#FDD835"/>
-
+    <solid android:color="#D5FFFF"/>
+    <gradient android:startColor="#FFFFFF"
+        android:endColor="#005954"
+        android:angle="270" />
     <size
         android:height="120dp"
         android:width="120dp" />

@@ -26,21 +26,7 @@ public class Login_Fragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        fg= view.findViewById(R.id.forgotPassword);
-        fg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.registerFragment);
-            }
-        });
-        Button loginButton = view.findViewById(R.id.loginButton);
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), NavActivity.class);
-                startActivity(intent);
-            }
-        });
+
     }
 
     @Override
