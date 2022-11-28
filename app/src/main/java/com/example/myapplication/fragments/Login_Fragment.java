@@ -26,7 +26,14 @@ public class Login_Fragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        Button button = view.findViewById(R.id.button);
+        TextView createAccount = view.findViewById(R.id.backtologin);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Navigation.findNavController(view).navigate(R.id.registerFragment);
+            }
+        });
     }
 
     @Override
