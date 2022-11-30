@@ -9,6 +9,27 @@
     tools:context=".ui.dashboard.DashboardFragment">
 
 
+    <EditText
+        android:id="@+id/nombre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name" />
+
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name" />
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Button" />
+
     <ImageView
         android:id="@+id/imageView4"
         android:layout_width="167dp"
@@ -28,5 +49,8 @@
         app:lottie_rawRes="@raw/green_leafs_loader"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"/>
+
+
+
 
 </LinearLayout>
