@@ -1,7 +1,9 @@
 package com.example.myapplication;
 
 import android.os.Bundle;
+import android.widget.TextView;
 
+import com.example.myapplication.database.entities.User;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,6 +16,8 @@ import com.example.myapplication.databinding.ActivityNavBinding;
 
 public class NavActivity extends AppCompatActivity {
 
+    private TextView textViewName;
+    private String user_data ;
     private ActivityNavBinding binding;
 
     @Override
@@ -21,6 +25,8 @@ public class NavActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityNavBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        user_data = getIntent().getStringExtra("user");
+
     }
 
     @Override
@@ -37,5 +43,8 @@ public class NavActivity extends AppCompatActivity {
                 .build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
+
+        textViewName = (TextView) findViewById(R.id.User_Name);
+        textViewName.setText(user_data);
     }
 }

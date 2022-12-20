@@ -6,10 +6,8 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import android.os.Bundle;
 
-import com.example.myapplication.database.DataBaseHelper;
-
 public class MainActivity extends AppCompatActivity {
-    DataBaseHelper myDB;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
