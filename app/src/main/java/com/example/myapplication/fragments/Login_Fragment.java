@@ -79,8 +79,6 @@ public class Login_Fragment extends Fragment {
                     if ( user_login!= null) {
 
                         Intent intent = new Intent(getActivity(), NavActivity.class);
-                        //intent.putExtra("user", (Serializable) user_login);
-                        //properties.getInstance().setUser(user_login);
                         guardarPreferencias(user_login,checkGuardarSesion.isChecked());
                         Toast.makeText(getContext(), "Login Exitoso", Toast.LENGTH_SHORT).show();
                         startActivity(intent);

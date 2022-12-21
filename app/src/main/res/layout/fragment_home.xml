@@ -186,7 +186,7 @@
                 android:id="@+id/textView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Reto Semanal"
+                android:text="Consejo Semanal"
                 android:fontFamily="@font/poppinsbold"
                 android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"

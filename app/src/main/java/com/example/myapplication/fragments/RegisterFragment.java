@@ -54,10 +54,15 @@ public class RegisterFragment extends Fragment {
                 String email_ = email.getEditText().getText().toString();
                 String pass = password.getEditText().getText().toString();
                 try {
-                    User user = new User(firstname,lastname,email_,pass);
-                    userDao.insertAll(user);
-                    Toast.makeText(getContext(), "Registro existoso", Toast.LENGTH_SHORT).show();
-                    Navigation.findNavController(view).navigate(R.id.login_Fragment);
+                    if (firstname!=null & lastname!=null & email_!= null & pass != null){
+                        User user = new User(firstname,lastname,email_,pass);
+                        userDao.insertAll(user);
+                        Toast.makeText(getContext(), "Registro existoso", Toast.LENGTH_SHORT).show();
+                        Navigation.findNavController(view).navigate(R.id.login_Fragment);
+                    }else {
+                        Toast.makeText(getContext(), "Todos los campos deben ser completados", Toast.LENGTH_SHORT).show();
+                    }
+
                 }catch ( SQLiteConstraintException ex) {
                     Toast.makeText(getContext(), ex.getMessage(), Toast.LENGTH_SHORT).show();
                 }

@@ -35,11 +35,6 @@ public abstract class AppDataBase extends RoomDatabase {
         if (sInstance == null) {
             synchronized (LOCK) {
                 sInstance = Room.databaseBuilder(context, AppDataBase.class, DATABASE_NAME).allowMainThreadQueries().fallbackToDestructiveMigration().build();
-                Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.person1);
-                byte[] image = bitmapToByte(bitmap);
-                User a = new User("jose", "cano", "jcanov@unsa.edu.pe", "vd9mnzbd");
-                a.setImage(image);
-                sInstance.userDao().insertAll(a);
                 LoadPlasticType(sInstance,context);
             }
         }

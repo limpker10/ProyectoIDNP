@@ -55,9 +55,6 @@ public class CameraFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        //Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        //cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, your_image_uri);
 
         camaraLauncher.launch(new Intent(MediaStore.ACTION_IMAGE_CAPTURE));
         return inflater.inflate(R.layout.fragment_camera, container, false);
@@ -83,10 +80,7 @@ public class CameraFragment extends Fragment {
                 getParentFragmentManager().setFragmentResultListener("key", getViewLifecycleOwner(), new FragmentResultListener() {
                     @Override
                     public void onFragmentResult(@NonNull String key, @NonNull Bundle bundle) {
-                        // We use a String here, but any type that can be put in a Bundle is supported
                         result = bundle.getInt("userLoged");
-                        // Do something with the result...
-
                     }
                 });
 
