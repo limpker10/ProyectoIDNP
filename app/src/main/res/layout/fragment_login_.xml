@@ -59,7 +59,8 @@
         android:id="@+id/password"
         android:layout_width="310dp"
         android:layout_height="wrap_content"
-        android:hint="Email"
+        android:hint="Enter your password"
+        app:endIconMode="password_toggle"
         app:startIconDrawable="@drawable/ic_password"
 
         app:layout_constraintBottom_toTopOf="@+id/toregister"
@@ -71,6 +72,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="textPassword"
             android:background="@drawable/circular_border_login"
             />
 

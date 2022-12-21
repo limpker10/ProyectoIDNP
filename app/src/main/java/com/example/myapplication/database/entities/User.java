@@ -8,8 +8,10 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
+
 @Entity(tableName = "User" )
-public class User {
+public class User implements Serializable {
     @PrimaryKey(autoGenerate = true)
     public int uid;
 
@@ -42,6 +44,10 @@ public class User {
         this.lastName = lastName;
         this.email = email;
         this.password = password;
+    }
+
+    public int getUid() {
+        return uid;
     }
 
     @NonNull

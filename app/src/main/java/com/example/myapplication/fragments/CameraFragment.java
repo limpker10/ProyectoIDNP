@@ -14,11 +14,13 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import com.example.myapplication.R;
@@ -44,6 +46,13 @@ public class CameraFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         imageView = view.findViewById(R.id.imagen);
         //imageView = view.findViewById(R.id.imagen);
+        Button select_plastic = view.findViewById(R.id.select_plastic);
+        select_plastic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Navigation.findNavController(view).navigate(R.id.plasticTypeFragment);
+            }
+        });
     }
 
     ActivityResultLauncher<Intent>camaraLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {

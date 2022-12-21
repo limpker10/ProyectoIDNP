@@ -41,5 +41,14 @@
         android:id="@+id/cameraFragment"
         android:name="com.example.myapplication.fragments.CameraFragment"
         android:label="fragment_camera"
-        tools:layout="@layout/fragment_camera" />
+        tools:layout="@layout/fragment_camera" >
+        <action
+            android:id="@+id/action_cameraFragment_to_plasticTypeFragment"
+            app:destination="@id/plasticTypeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/plasticTypeFragment"
+        android:name="com.example.myapplication.fragments.PlasticTypeFragment"
+        android:label="fragment_typeplastic"
+        tools:layout="@layout/fragment_typeplastic" />
 </navigation>
