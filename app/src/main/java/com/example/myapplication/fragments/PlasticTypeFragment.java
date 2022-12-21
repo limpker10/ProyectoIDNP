@@ -35,9 +35,8 @@ public class PlasticTypeFragment extends Fragment {
         elements.add(new PlasticType("Botella de Plastico","#775447" ,"e.g. agua, jugos, gaseosas, etc"));
         elements.add(new PlasticType("Envoltorio de Plastico","#680447", "e.g. dulces, caramelos, goma de mascar, etc "));
         elements.add(new PlasticType("Bolsa de Plastico", "#03a9f4","e.g. supermercado, ......, ...., etc "));
-        //ListAdapter listAdapter = new ListAdapter(elements,getContext());
         listAdapter = new ListAdapter(elements,getContext());
-        //RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
+
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(listAdapter);

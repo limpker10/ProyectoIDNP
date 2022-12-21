@@ -20,6 +20,9 @@
         <action
             android:id="@+id/action_navigation_home_to_cameraFragment"
             app:destination="@id/cameraFragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_infoFragment"
+            app:destination="@id/infoFragment" />
     </fragment>
 
     <fragment
@@ -51,4 +54,18 @@
         android:name="com.example.myapplication.fragments.PlasticTypeFragment"
         android:label="fragment_typeplastic"
         tools:layout="@layout/fragment_typeplastic" />
+    <fragment
+        android:id="@+id/infoFragment"
+        android:name="com.example.myapplication.fragments.InfoFragment"
+        android:label="fragment_info"
+        tools:layout="@layout/fragment_info" >
+        <action
+            android:id="@+id/action_infoFragment_to_descriptionFragment"
+            app:destination="@id/descriptionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/descriptionFragment"
+        android:name="com.example.myapplication.fragments.DescriptionFragment"
+        android:label="fragment_description"
+        tools:layout="@layout/fragment_description" />
 </navigation>

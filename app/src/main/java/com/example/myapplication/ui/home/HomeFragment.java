@@ -45,7 +45,13 @@ public class HomeFragment extends Fragment {
                 Navigation.findNavController(view).navigate(R.id.cameraFragment);
             }
         });
-
+        ConstraintLayout infolist = view.findViewById(R.id.infolist);
+        infolist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Navigation.findNavController(view).navigate(R.id.infoFragment);
+            }
+        });
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
