@@ -12,30 +12,77 @@
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home">
         <action
-            android:id="@+id/action_navigation_home_to_navigation_notifications2"
-            app:destination="@id/navigation_notifications" />
+            android:id="@+id/action_navigation_home_to_navigation_notifications"
+            app:destination="@id/navigation_profile" />
         <action
-            android:id="@+id/action_navigation_home_to_navigation_dashboard2"
-            app:destination="@id/navigation_dashboard" />
+            android:id="@+id/action_navigation_home_to_navigation_dashboard"
+            app:destination="@id/navigation_charts" />
+        <action
+            android:id="@+id/action_navigation_home_to_cameraFragment"
+            app:destination="@id/cameraFragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_infoFragment"
+            app:destination="@id/navigation_info" />
+        <action
+            android:id="@+id/action_navigation_home_to_historyFragment"
+            app:destination="@id/historyFragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/navigation_dashboard"
+        android:id="@+id/navigation_charts"
         android:name="com.example.myapplication.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
+        android:label="@string/title_Charts"
         tools:layout="@layout/fragment_dashboard">
-        <action
-            android:id="@+id/action_navigation_dashboard_to_navigation_home2"
-            app:destination="@id/navigation_home" />
+
     </fragment>
 
     <fragment
-        android:id="@+id/navigation_notifications"
+        android:id="@+id/navigation_profile"
         android:name="com.example.myapplication.ui.profile.ProfileFragment"
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile">
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_info"
+        android:name="com.example.myapplication.fragments.InfoFragment"
+        android:label="fragment_info"
+        tools:layout="@layout/fragment_info" >
         <action
-            android:id="@+id/action_navigation_notifications_to_navigation_home2"
+            android:id="@+id/action_infoFragment_to_descriptionFragment"
+            app:destination="@id/descriptionFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/cameraFragment"
+        android:name="com.example.myapplication.fragments.CameraFragment"
+        android:label="fragment_camera"
+        tools:layout="@layout/fragment_camera" >
+        <action
+            android:id="@+id/action_cameraFragment_to_plasticTypeFragment"
+            app:destination="@id/plasticTypeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/plasticTypeFragment"
+        android:name="com.example.myapplication.fragments.PlasticTypeFragment"
+        android:label="fragment_typeplastic"
+        app:popUpTo="@+id/navigation_home"
+        app:popUpToInclusive="true"
+        tools:layout="@layout/fragment_typeplastic" >
+        <action
+            android:id="@+id/action_plasticTypeFragment_to_navigation_home"
             app:destination="@id/navigation_home" />
     </fragment>
+
+    <fragment
+        android:id="@+id/descriptionFragment"
+        android:name="com.example.myapplication.fragments.DescriptionFragment"
+        android:label="fragment_description"
+        tools:layout="@layout/fragment_description" />
+    <fragment
+        android:id="@+id/historyFragment"
+        android:name="com.example.myapplication.fragments.HistoryFragment"
+        android:label="fragment_history"
+        tools:layout="@layout/fragment_history" />
 </navigation>

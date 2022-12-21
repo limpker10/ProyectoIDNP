@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/loginFragment"
     android:label="loginFragment"
-    app:startDestination="@id/login_Fragment">
+    app:startDestination="@id/splashFragment">
     <fragment
         android:id="@+id/login_Fragment"
         android:name="com.example.myapplication.fragments.Login_Fragment"
@@ -26,5 +26,16 @@
         <action
             android:id="@+id/action_registerFragment_to_login_Fragment"
             app:destination="@id/login_Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.example.myapplication.fragments.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash" >
+        <action
+            android:id="@+id/action_splashFragment_to_login_Fragment"
+            app:destination="@id/login_Fragment"
+            app:exitAnim="@anim/to_right"
+            app:popExitAnim="@anim/to_right" />
     </fragment>
 </navigation>
