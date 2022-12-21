@@ -39,19 +39,20 @@ public class HomeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         loadDataUser(view);
         ConstraintLayout registrarProducto = view.findViewById(R.id.registrarProducto);
+        ConstraintLayout historial = view.findViewById(R.id.infolist);
         registrarProducto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Navigation.findNavController(view).navigate(R.id.cameraFragment);
             }
         });
-        ConstraintLayout infolist = view.findViewById(R.id.infolist);
-        infolist.setOnClickListener(new View.OnClickListener() {
+        historial.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.navigation_info);
+                Navigation.findNavController(view).navigate(R.id.historyFragment);
             }
         });
+
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,

@@ -159,12 +159,11 @@
             app:layout_constraintTop_toBottomOf="@+id/registrarProducto">
 
             <TextView
-                android:id="@+id/textView5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppinsbold"
                 android:gravity="center"
-                android:text="Calcular EF"
+                android:text="Historial"
                 android:textSize="16dp"
                 android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"

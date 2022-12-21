@@ -48,6 +48,7 @@ public class CameraFragment extends Fragment {
     String itemPlace;
     Bitmap imgBitmap;
     int cantidad;
+    int result;
     Button register;
     private TextInputLayout addplastico;
 
@@ -78,22 +79,24 @@ public class CameraFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 cantidad = Integer.parseInt(addplastico.getEditText().getText().toString());
+
                 getParentFragmentManager().setFragmentResultListener("key", getViewLifecycleOwner(), new FragmentResultListener() {
                     @Override
                     public void onFragmentResult(@NonNull String key, @NonNull Bundle bundle) {
                         // We use a String here, but any type that can be put in a Bundle is supported
-                        int result = bundle.getInt("userLoged");
+                        result = bundle.getInt("userLoged");
                         // Do something with the result...
-                        try {
-                            AppDataBase.getInstance(getContext()).historyDao().insertAll(new PlasticHistory(result,itemTyplePlastic,itemPlace,cantidad,bitmapToByte(imgBitmap)));
-                            Toast.makeText(getContext(), "Registro Exitoso", Toast.LENGTH_SHORT).show();
-                        }catch ( SQLiteConstraintException ex) {
-                            Toast.makeText(getContext(), ex.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
 
                     }
                 });
-                Toast.makeText(getContext(), "Registro Exitoso", Toast.LENGTH_SHORT).show();
+
+                try {
+                    AppDataBase.getInstance(getContext()).historyDao().insertAll(new PlasticHistory(1,itemTyplePlastic,itemPlace,cantidad,bitmapToByte(imgBitmap)));
+                    Toast.makeText(getContext(), "Registro Exitoso", Toast.LENGTH_SHORT).show();
+                }catch ( SQLiteConstraintException ex) {
+                    Toast.makeText(getContext(), ex.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+                //Toast.makeText(getContext(), "Registro Exitoso", Toast.LENGTH_SHORT).show();
                 //AppDataBase.getInstance(getContext()).historyDao().insertAll(new PlasticHistory());
             }
         });

@@ -23,6 +23,9 @@
         <action
             android:id="@+id/action_navigation_home_to_infoFragment"
             app:destination="@id/navigation_info" />
+        <action
+            android:id="@+id/action_navigation_home_to_historyFragment"
+            app:destination="@id/historyFragment" />
     </fragment>
 
     <fragment
@@ -77,4 +80,9 @@
         android:name="com.example.myapplication.fragments.DescriptionFragment"
         android:label="fragment_description"
         tools:layout="@layout/fragment_description" />
+    <fragment
+        android:id="@+id/historyFragment"
+        android:name="com.example.myapplication.fragments.HistoryFragment"
+        android:label="fragment_history"
+        tools:layout="@layout/fragment_history" />
 </navigation>
