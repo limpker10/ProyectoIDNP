@@ -41,6 +41,9 @@ public class Login_Fragment extends Fragment {
     private String user_email,user_password;
     private CheckBox checkGuardarSesion;
 
+    private SharedPreferences preferences;
+    private SharedPreferences.Editor editor;
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -48,10 +51,23 @@ public class Login_Fragment extends Fragment {
         userDao = dataBase.userDao();
         Button button = view.findViewById(R.id.button);
         TextView createAccount = view.findViewById(R.id.toregister);
-
         email = view.findViewById(R.id.email);
         password = view.findViewById(R.id.password);
+        checkGuardarSesion = view.findViewById(R.id.guardar_session);
 
+        inicializarElementos();
+
+        if (revisarSession()){
+            preferences = this.getActivity().getSharedPreferences("credenciasles", Context.MODE_PRIVATE);
+            int id = preferences.getInt("id",0);
+
+            Bundle result = new Bundle();
+            result.putInt("userLoged", id);
+            getParentFragmentManager().setFragmentResult("userKey", result);
+
+            Intent intent = new Intent(getActivity(), NavActivity.class);
+            startActivity(intent);
+        }
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,10 +77,12 @@ public class Login_Fragment extends Fragment {
                 try {
                     User user_login = userDao.findByEmail(user_email,user_password);
                     if ( user_login!= null) {
-                        Toast.makeText(getContext(), "Login Exitoso", Toast.LENGTH_SHORT).show();
+
                         Intent intent = new Intent(getActivity(), NavActivity.class);
                         //intent.putExtra("user", (Serializable) user_login);
-                        properties.getInstance().setUser(user_login);
+                        //properties.getInstance().setUser(user_login);
+                        guardarPreferencias(user_login,checkGuardarSesion.isChecked());
+                        Toast.makeText(getContext(), "Login Exitoso", Toast.LENGTH_SHORT).show();
                         startActivity(intent);
                     }else {
                         Toast.makeText(getContext(), "Email o Contraseña incorrectos", Toast.LENGTH_SHORT).show();
@@ -88,16 +106,20 @@ public class Login_Fragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_login_, container, false);
     }
-    private void inicializarElementos(){
 
-    }
+    private void guardarPreferencias(User user_data,boolean checked) {
 
-    private void guardarPreferencias(User user_data) {
-
-        SharedPreferences preferences = this.getActivity().getSharedPreferences("credenciasles", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = preferences.edit();
+        editor.putBoolean("session",checked);
         editor.putInt("id",user_data.getUid());
         editor.putString("nombre",user_data.getFirstName());
         editor.commit();
     }
+    private boolean revisarSession(){
+        return this.preferences.getBoolean("session",false);
+    }
+    private void inicializarElementos(){
+        preferences = this.getActivity().getSharedPreferences("credenciasles", Context.MODE_PRIVATE);
+        editor = preferences.edit();
+    }
+
 }

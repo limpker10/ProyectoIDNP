@@ -49,7 +49,7 @@ public class HomeFragment extends Fragment {
         infolist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.infoFragment);
+                Navigation.findNavController(view).navigate(R.id.navigation_info);
             }
         });
     }

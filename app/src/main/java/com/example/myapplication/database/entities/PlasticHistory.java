@@ -7,56 +7,64 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "PlasticHistory" ,
+import java.io.Serializable;
+
+@Entity(tableName = "PlasticHistory",
         foreignKeys = {
-                @ForeignKey(entity = PlasticType.class,
-                        parentColumns = "TypeId",
-                        childColumns = "plasticType",
-                        onDelete = CASCADE),
                 @ForeignKey(
                         entity = User.class,
-                        parentColumns = "userId",
-                        childColumns = "histoyUser",
-                        onDelete = CASCADE),
+                        parentColumns = "uid",
+                        childColumns = "user"),
         })
-public class PlasticHistory {
+public class PlasticHistory implements Serializable {
+
     @PrimaryKey(autoGenerate = true)
-    public  int historyid;
-    @ColumnInfo(name = "histoy_user")
-    private int histoyUser;
-    @ColumnInfo(name = "plastic_type")
-    private int plasticType;
+    public int historyid;
+
+    @ColumnInfo(name = "user")
+    private int user;
+
+    @ColumnInfo(name = "plasticType")
+    private String plasticType;
+
     @ColumnInfo(name = "place")
     private String place;
+
     @ColumnInfo(name = "amount")
     private int amount;
+
     @ColumnInfo(name = "image", typeAffinity = ColumnInfo.BLOB)
     private byte[] image;
+
     @ColumnInfo(name = "status", defaultValue = "1")
-    private int  status;
+    private int status;
 
-
-    public PlasticHistory(int histoyUser, int plasticType, String place, int amount, byte[] image) {
-        this.histoyUser = histoyUser;
+    public PlasticHistory(int user, String plasticType, String place, int amount, byte[] image) {
+        this.user = user;
         this.plasticType = plasticType;
         this.place = place;
         this.amount = amount;
         this.image = image;
     }
 
-    public int getHistoyUser() {
-        return histoyUser;
+    public int getHistoryid() {
+        return historyid;
     }
 
-    public void setHistoyUser(int histoyUser) {
-        this.histoyUser = histoyUser;
+
+    public int getUser() {
+        return user;
     }
 
-    public int getPlasticType() {
+    public void setUser(int user) {
+        this.user = user;
+    }
+
+    public String getPlasticType() {
         return plasticType;
     }
 
-    public void setPlasticType(int plasticType) {
+    public void setPlasticType(String plasticType) {
         this.plasticType = plasticType;
     }
 

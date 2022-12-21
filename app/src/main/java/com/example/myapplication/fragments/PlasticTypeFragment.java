@@ -15,6 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
 import com.example.myapplication.adapters.ListAdapter;
+import com.example.myapplication.database.AppDataBase;
+import com.example.myapplication.database.dao.TypePlasticDao;
 import com.example.myapplication.database.entities.PlasticType;
 
 import java.util.ArrayList;
@@ -31,10 +33,8 @@ public class PlasticTypeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_typeplastic, container, false);
         recyclerView = view.findViewById(R.id.recyclerView);
-        elements = new ArrayList<>();
-        elements.add(new PlasticType("Botella de Plastico","#775447" ,"e.g. agua, jugos, gaseosas, etc"));
-        elements.add(new PlasticType("Envoltorio de Plastico","#680447", "e.g. dulces, caramelos, goma de mascar, etc "));
-        elements.add(new PlasticType("Bolsa de Plastico", "#03a9f4","e.g. supermercado, ......, ...., etc "));
+        elements = null;
+        //AppDataBase.getInstance(getContext()).plasticDao().getAll();
         listAdapter = new ListAdapter(elements,getContext());
 
         recyclerView.setHasFixedSize(true);
