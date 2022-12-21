@@ -36,7 +36,7 @@ public class NavActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityNavBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        //guardarPreferencias(properties.getInstance().user)...
+        //guardarPreferencias(properties.getInstance().user)....
     }
 
     @Override
