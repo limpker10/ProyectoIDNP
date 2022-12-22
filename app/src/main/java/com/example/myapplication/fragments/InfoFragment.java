@@ -15,50 +15,51 @@ import android.view.ViewGroup;
 
 import com.example.myapplication.R;
 import com.example.myapplication.adapters.InfoAdapter;
-import com.example.myapplication.adapters.ListAdapter;
-import com.example.myapplication.database.entities.Assistance;
+import com.example.myapplication.database.AppDataBase;
 import com.example.myapplication.database.entities.PlasticType;
+import com.example.myapplication.properties;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class InfoFragment extends Fragment {
+    //AppDataBase.getInstance(getContext()).plasticDao().getAll();
+    private List<PlasticType> elements;
+    private RecyclerView recyclerView;
+    private InfoAdapter listAdapter;
 
-    List<Assistance> elements;
-    RecyclerView recyclerView;
-    InfoAdapter listAdapter;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+    }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_info, container, false);
-        recyclerView = view.findViewById(R.id.recyclerView);
-        elements = new ArrayList<>();
-        elements.add(new Assistance("Botella de Plastico","#775447" ,"e.g. agua, jugos, gaseosas, etc"));
-        elements.add(new Assistance("Envoltorio de Plastico","#680447", "e.g. dulces, caramelos, goma de mascar, etc "));
-        elements.add(new Assistance("Bolsa de Plastico", "#03a9f4","e.g. supermercado, ......, ...., etc "));
-        listAdapter = new InfoAdapter(elements,getContext(), new InfoAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(Assistance item) {
-                moveToDescription(item,view);
-            }
 
-        });
+        View view = inflater.inflate(R.layout.fragment_info, container, false);
+        elements = new ArrayList<>();
+        recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
+        elements = AppDataBase.getInstance(getContext()).plasticDao().getAll();
+        //elements = AppDataBase.getInstance(getContext()).plasticDao().getAll();
+        listAdapter = new InfoAdapter(elements, getContext());
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(listAdapter);
+
         return view;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
     }
 
-    public void moveToDescription(Assistance item, View view) {
+    public void moveToDescription(PlasticType item, View view) {
         Bundle result = new Bundle();
-        result.putSerializable("info",item);
+        result.putSerializable("info", item);
         getParentFragmentManager().setFragmentResult("requestKey", result);
         Navigation.findNavController(view).navigate(R.id.descriptionFragment);
     }

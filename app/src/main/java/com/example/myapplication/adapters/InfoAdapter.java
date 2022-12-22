@@ -1,5 +1,7 @@
 package com.example.myapplication.adapters;
 
+import static com.example.myapplication.database.BitmapManager.byteToBitmap;
+
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -21,20 +23,20 @@ import java.util.List;
 
 public class InfoAdapter extends RecyclerView.Adapter<InfoAdapter.ViewHolder> {
 
-    private List<Assistance> eData;
+    private List<PlasticType> eData;
     private LayoutInflater minflater;
     private Context context;
-    final InfoAdapter.OnItemClickListener listener;
+    //final InfoAdapter.OnItemClickListener listener;
 
     public interface OnItemClickListener {
-        void onItemClick(Assistance item);
+        void onItemClick(PlasticType item);
     }
 
-    public InfoAdapter(List<Assistance> itemList, Context context, InfoAdapter.OnItemClickListener listener){
+    public InfoAdapter(List<PlasticType> itemList, Context context){
         this.minflater = LayoutInflater.from(context);
         this.context = context;
         this.eData = itemList;
-        this.listener = listener;
+        //this.listener = listener;
     }
 
     @NonNull
@@ -47,6 +49,7 @@ public class InfoAdapter extends RecyclerView.Adapter<InfoAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull InfoAdapter.ViewHolder holder, int position) {
         holder.bindData(eData.get(position));
+        holder.setIsRecyclable(false);
     }
 
     @Override
@@ -54,7 +57,7 @@ public class InfoAdapter extends RecyclerView.Adapter<InfoAdapter.ViewHolder> {
         return eData.size();
     }
 
-    public void setItems(List<Assistance> items) { eData = items;}
+    public void setItems(List<PlasticType> items) { eData = items;}
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         ImageView iconImage;
@@ -66,16 +69,12 @@ public class InfoAdapter extends RecyclerView.Adapter<InfoAdapter.ViewHolder> {
             description = itemView.findViewById(R.id.description);
         }
 
-        void bindData(final Assistance item){
-            iconImage.setColorFilter(Color.parseColor(item.getColor()), PorterDuff.Mode.SRC_IN);
-            name.setText(item.getTitle());
-            description.setText(item.getInfo());
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    listener.onItemClick(item);
-                }
-            });
+        void bindData(final PlasticType item){
+            iconImage.setImageBitmap(byteToBitmap(item.getImage()));
+            //iconImage.setColorFilter(Color.parseColor(item.getColor()), PorterDuff.Mode.SRC_IN);
+            name.setText(item.getName());
+            description.setText(item.getDescription());
+
         }
     }
 

@@ -1,28 +1,35 @@
 package com.example.myapplication;
 
 import android.app.Application;
+import android.content.Context;
 
+import com.example.myapplication.database.AppDataBase;
+import com.example.myapplication.database.entities.PlasticType;
 import com.example.myapplication.database.entities.User;
+
+import java.util.List;
 
 public class properties extends Application {
 
-    public User user = new User("","","","");
+    private List<PlasticType> elements;
     private static properties instance;
 
-    public User getUser() {
-        return user;
+    public List<PlasticType> getElements() {
+        return elements;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setElements(List<PlasticType> elements) {
+        this.elements = elements;
     }
 
-    public static properties getInstance() {
+    public static properties getInstance(Context context) {
         if (instance == null){
-            instance = new properties();
+            instance = new properties(context);
         }
         return instance;
     }
 
-    private properties() { }
+    private properties(Context context) {
+        elements=AppDataBase.getInstance(context).plasticDao().getAll();
+    }
 }

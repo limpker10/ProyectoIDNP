@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cv"
-    app:cardBackgroundColor="@color/Color2"
+    app:cardBackgroundColor="@color/Color1"
     android:layout_height="wrap_content"
     android:layout_width="match_parent"
     android:animateLayoutChanges="true"
@@ -17,43 +17,50 @@
         android:layout_height="wrap_content"
         android:padding="16dp">
 
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/item_image"
-            android:background="@drawable/circular_border_secondary"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="125dp"
+            android:layout_height="122dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.054"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/roundedCornersImageView"
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
             android:id="@+id/name"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
+            android:layout_width="188dp"
+            android:layout_height="25dp"
+            android:fontFamily="@font/poppinsbold"
             android:text="Nombre plastico"
             android:textAlignment="textStart"
+            android:textColor="@color/white"
+            android:textSize="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.9"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.387"
+            app:layout_constraintStart_toEndOf="@+id/item_image"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.141" />
+            app:layout_constraintVertical_bias="0.153" />
 
         <TextView
             android:id="@+id/description"
-            android:layout_width="228dp"
-            android:layout_height="47dp"
+            android:layout_width="189dp"
+            android:layout_height="59dp"
+            android:fontFamily="@font/poppinsbold"
             android:text="Descripcion del tipo de plastico"
             android:textAlignment="textStart"
+            android:textColor="@color/white"
+            android:textSize="16dp"
+            android:autoSizeTextType="uniform"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.404"
+            app:layout_constraintStart_toEndOf="@+id/item_image"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.804" />
+            app:layout_constraintVertical_bias="0.841" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
