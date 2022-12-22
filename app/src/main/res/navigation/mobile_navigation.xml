@@ -43,6 +43,13 @@
         tools:layout="@layout/fragment_profile">
 
     </fragment>
+    <fragment
+        android:id="@+id/editar_profile"
+        android:name="com.example.myapplication.fragments.EditarFragment"
+        android:label="@string/title_profile"
+        tools:layout="@layout/fragment_editar">
+
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_info"
@@ -63,6 +70,7 @@
             android:id="@+id/action_cameraFragment_to_plasticTypeFragment"
             app:destination="@id/plasticTypeFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/plasticTypeFragment"
         android:name="com.example.myapplication.fragments.PlasticTypeFragment"
@@ -85,4 +93,11 @@
         android:name="com.example.myapplication.fragments.HistoryFragment"
         android:label="fragment_history"
         tools:layout="@layout/fragment_history" />
+
+
+    <fragment
+        android:id="@+id/editarPerfilFragment"
+        android:name="com.example.myapplication.fragments.EditarFragment"
+        android:label="fragment_editar"
+        tools:layout="@layout/fragment_editar" />
 </navigation>

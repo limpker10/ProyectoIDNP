@@ -71,8 +71,8 @@ public class HomeFragment extends Fragment {
     }
 
     public void loadDataUser(View view){
-        cargarPreferencias();
-        Log.i(TAG, user_data.getFirstName());
+       cargarPreferencias();
+        //Log.i(TAG, user_data.getFirstName());
         TextView textViewName = view.findViewById(R.id.User_Name);
         ImageView a = view.findViewById(R.id.imageView);
         if (user_data.getImage() != null) {
