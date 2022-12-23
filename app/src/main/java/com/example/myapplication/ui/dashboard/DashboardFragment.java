@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.myapplication.BarView;
 import com.example.myapplication.R;
 import com.example.myapplication.databinding.FragmentDashboardBinding;
 
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class DashboardFragment extends Fragment {
+
 
     private FragmentDashboardBinding binding;
 

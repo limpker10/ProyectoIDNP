@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="731dp"
+    android:background="@color/Color2"
+    android:orientation="vertical"
+    tools:context=".fragments.EditarFragment">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1000dp"
+            android:orientation="vertical"
+            tools:ignore="MissingConstraints"
+            android:padding="20dp"
+            android:gravity="center">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout3"
+                    android:layout_width="204dp"
+                    android:layout_height="192dp"
+                    android:background="@drawable/circular_border_secondary"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.496"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.05">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/imageView5"
+                        android:layout_width="108dp"
+                        android:layout_height="108dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/person3"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.494"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.212"
+                        app:shapeAppearanceOverlay="@style/roundedCornersImageView" />
+
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/imageView6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/circular_border_primary"
+                        android:src="@android:drawable/ic_menu_camera"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.84"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.596" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="162dp"
+                        android:layout_height="43dp"
+                        android:background="@drawable/circular_border"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.487"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.917">
+
+                        <ImageView
+                            android:id="@+id/imageView2"
+                            android:layout_width="60dp"
+                            android:layout_height="64dp"
+                            android:src="@drawable/insignia"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.057"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.545" />
+
+                        <TextView
+                            android:id="@+id/textView3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppinsbold"
+                            android:text="Avanzado"
+                            android:textColor="@color/white"
+                            android:textSize="16dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.846"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.466" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout4"
+                android:layout_width="345dp"
+                android:layout_height="300dp"
+                android:background="@drawable/circular_border_secondary"
+                android:paddingStart="10dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    tools:ignore="MissingConstraints"
+                    android:padding="5dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="8dp">
+                        <TextView
+                            android:id="@+id/datos"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppinsbold"
+                            android:text="Datos"
+                            android:textColor="@color/Color1" />
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center"
+                                tools:ignore="MissingConstraints">
+                                <TextView
+                                    android:id="@+id/nombre"
+                                    android:layout_width="250dp"
+                                    android:layout_height="wrap_content"
+                                    android:text="Nombre:"
+                                    android:textColor="@color/Color2"
+                                    android:textSize="15dp" />
+                                <ImageView
+                                    android:id="@+id/imageView7"
+                                    android:layout_width="60dp"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_edit"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHorizontal_bias="0.94"
+                                    app:layout_constraintStart_toEndOf="@+id/datos"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:layout_constraintVertical_bias="0.059"
+                                    android:paddingHorizontal="16dp"
+                                    android:paddingTop="10dp"/>
+                            </LinearLayout>
+                        <EditText
+                            android:id="@+id/nombreEdit"
+                            android:layout_width="250dp"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/montserratbold"
+
+                            android:paddingTop="10dp"
+                            android:text="Jose Miguel"
+                            android:textColor="@color/Color1"
+                            android:textSize="12dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        tools:ignore="MissingConstraints"
+                        android:padding="5dp">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center"
+                            tools:ignore="MissingConstraints">
+                            <TextView
+                                android:id="@+id/email"
+                                android:layout_width="250dp"
+                                android:layout_height="wrap_content"
+                                android:text="Email:"
+                                android:textColor="@color/Color2"
+                                android:textSize="15dp" />
+                            <ImageView
+                                android:id="@+id/imageView8"
+                                android:layout_width="60dp"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_edit"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.94"
+                                app:layout_constraintStart_toEndOf="@+id/datos"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintVertical_bias="0.059"
+                                android:paddingHorizontal="16dp"
+                                android:paddingTop="10dp"/>
+                        </LinearLayout>
+                        <EditText
+                            android:id="@+id/emailEdit"
+                            android:layout_width="250dp"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/montserratbold"
+                            android:paddingTop="10dp"
+                            android:text="jose@gmail.com"
+                            android:textColor="@color/Color1"
+                            android:textSize="12dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        tools:ignore="MissingConstraints"
+                        android:padding="5dp">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center"
+                            tools:ignore="MissingConstraints">
+                            <TextView
+                                android:id="@+id/telefono"
+                                android:layout_width="250dp"
+                                android:layout_height="wrap_content"
+                                android:text="Email:"
+                                android:textColor="@color/Color2"
+                                android:textSize="15dp" />
+                            <ImageView
+                                android:id="@+id/imageView9"
+                                android:layout_width="60dp"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_edit"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.94"
+                                app:layout_constraintStart_toEndOf="@+id/datos"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintVertical_bias="0.059"
+                                android:paddingHorizontal="16dp"
+                                android:paddingTop="10dp"/>
+                        </LinearLayout>
+                        <EditText
+                            android:id="@+id/telefonoEdit"
+                            android:layout_width="250dp"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/montserratbold"
+                            android:paddingTop="10dp"
+                            android:text="989139988"
+                            android:textColor="@color/Color1"
+                            android:textSize="12dp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="40dp"/>
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/circular_border_primary"
+                android:text="Confirmar "
+                android:textSize="16dp"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="135dp"
+                tools:layout_editor_absoluteY="584dp" />
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
