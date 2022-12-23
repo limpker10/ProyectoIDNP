@@ -6,5 +6,5 @@
     android:maxLines="1"
     android:autoSizeTextType="uniform"
     android:background="@drawable/circular_border_login"
-    android:padding="16dp"
+    android:padding="17dp"
     android:textAppearance="?attr/textAppearanceSubtitle1"></TextView>
