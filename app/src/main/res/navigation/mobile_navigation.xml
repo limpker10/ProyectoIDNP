@@ -100,4 +100,6 @@
         android:name="com.example.myapplication.fragments.EditarFragment"
         android:label="fragment_editar"
         tools:layout="@layout/fragment_editar" />
+
+
 </navigation>

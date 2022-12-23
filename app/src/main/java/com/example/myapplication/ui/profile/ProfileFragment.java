@@ -21,21 +21,6 @@ import com.example.myapplication.R;
 public class ProfileFragment extends Fragment {
 
 
-  /*  public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-        ConstraintLayout editar = view.findViewById(R.id.imageView7);
-        editar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.editar_profile);
-            }
-        });
-
-
-
-    }*/
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
