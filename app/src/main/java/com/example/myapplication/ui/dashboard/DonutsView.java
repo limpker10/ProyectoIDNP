@@ -2,6 +2,7 @@ package com.example.myapplication.ui.dashboard;
 
 import android.content.Context;
 
+import android.content.SharedPreferences;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -123,11 +124,12 @@ public class DonutsView extends View {
     }
 
     public void ingresandoDatos(){
-        //datos del excel
-        //"Casa","Espacio Urbano","Centro Educativo","Centro Trabajo","Centro deportivo","Parques","Otros"
 
-        int cantidad = AppDataBase.getInstance(getContext()).historyDao().getAmountPlasticAll(1);
-        List<PlasticHistory> a = AppDataBase.getInstance(getContext()).historyDao().getAllId(1);
+        SharedPreferences preferences = getContext().getSharedPreferences("credenciales", Context.MODE_PRIVATE);
+        int id = preferences.getInt("id",0);
+
+        int cantidad = AppDataBase.getInstance(getContext()).historyDao().getAmountPlasticAll(id);
+        List<PlasticHistory> a = AppDataBase.getInstance(getContext()).historyDao().getAllId(id);
 
         for (int i = 0 ; i < a.size(); i++) {
             this.listaPais.add(a.get(i).getPlasticType());

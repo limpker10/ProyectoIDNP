@@ -33,11 +33,6 @@ import com.example.myapplication.databinding.ActivityNavBinding;
 public class NavActivity extends AppCompatActivity {
 
 
-    public static final int CHANNEL_ID2 = 0x00002;
-    public static final String GROUP_ID_1 = "CustomServiceGroup1";
-    public static final String CHANNEL_ID_2 = "CustomServiceChannel2";
-
-    private User user_data;
     private ActivityNavBinding binding;
     private static final String TAG = "ErrorUser";
 
@@ -46,7 +41,6 @@ public class NavActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityNavBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        createNotificationChannel();
         //guardarPreferencias(properties.getInstance().user)....
     }
 
@@ -56,8 +50,6 @@ public class NavActivity extends AppCompatActivity {
         BottomNavigationView navView = findViewById(R.id.nav_view);
         NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_activity_nav);
         NavController navController = navHostFragment.getNavController();
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_home, R.id.navigation_charts, R.id.navigation_info,R.id.navigation_profile)
                 .build();
@@ -65,24 +57,6 @@ public class NavActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(binding.navView, navController);
     }
 
-    private void createNotificationChannel() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-
-            NotificationChannel channel2 = new NotificationChannel(
-                    CHANNEL_ID_2,
-                    "Channel 2",
-                    NotificationManager.IMPORTANCE_HIGH
-            );
-            //channel2.setSound(null,null);
-            //channel2.enableVibration(false);
-            channel2.setDescription("This is Channel 2");
-            channel2.setGroup(GROUP_ID_1);
-
-            NotificationManagerCompat manager = NotificationManagerCompat.from(this);
-            manager.createNotificationChannel(channel2);
-
-        }
-    }
 
 
 }

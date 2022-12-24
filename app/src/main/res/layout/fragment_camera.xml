@@ -9,8 +9,8 @@
 
     <ImageView
         android:id="@+id/imagen"
-        android:layout_width="351dp"
-        android:layout_height="239dp"
+        android:layout_width="335dp"
+        android:layout_height="220dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.55"
@@ -21,17 +21,17 @@
 
     <Button
         android:id="@+id/select_plastic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Plasticos"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="138dp"
+        android:layout_height="58dp"
+        android:text="Registra Plasticos"
+        app:icon="@drawable/ic_edit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.884"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imagen"
-        app:layout_constraintVertical_bias="0.096"
-        app:icon="@drawable/ic_edit"
-        style="@style/Widget.AppCompat.Button.Colored"/>
+        app:layout_constraintVertical_bias="0.096" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout"
@@ -107,8 +107,8 @@
     <Button
         android:id="@+id/register_plastic"
         style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="179dp"
+        android:layout_height="56dp"
         android:text="Registrar"
         app:icon="@drawable/ic_baseline_app_registration"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -116,6 +116,6 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout3"
-        app:layout_constraintVertical_bias="0.476" />
+        app:layout_constraintVertical_bias="0.209" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

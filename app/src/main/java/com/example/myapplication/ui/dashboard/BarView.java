@@ -1,6 +1,7 @@
 package com.example.myapplication.ui.dashboard;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -48,20 +49,19 @@ public class BarView extends View {
         pincel2.setColor(Color.BLACK);
         pincel2.setStrokeWidth(3);
 
-        //solo texto
+
         pincel2.setTextSize(40);
 
-        canvas.drawText("Tasa de Natalidad", 0.25f*ancho,
+        canvas.drawText("Cantidad Plasticos Recolectados", 0.25f*ancho,
                 0.1f*alto, pincel2);
 
-        //solo texto
         pincel2.setTextSize(22);
 
-        //lineas de grafico de barras***************************************************
+
         canvas.drawLine(0.15f*ancho, 0.2f*alto, 0.15f*ancho, 0.8f*alto, pincel2);
         canvas.drawLine(0.15f*ancho, 0.8f*alto, 0.85f*ancho, 0.8f*alto, pincel2);
 
-        //lineas de medicion de la grafica***********************************************
+
         pincel2.setStrokeWidth(1);
         for (int i = 0; i < 10; i++){
             float yLine = 0.2f*alto + (0.06f)*alto*(i);
@@ -73,36 +73,36 @@ public class BarView extends View {
                     pincel2);
         }
 
-        //leyenda***********************************************
+
         canvas.drawRect(0.34f*ancho,0.92f*alto,
                 0.36f*ancho, 0.94f*alto, pincel1);
         canvas.drawText("Tasa de Natalidad", 0.38f*ancho,
                 0.94f*alto, pincel2);
 
-        //****************************************************
-        //creando las barras y etiquetas
+
         float parts = (0.70f*ancho)/((float)listaPais.size()*2 + 1f);
 
         float espacios = parts;
 
         for (int i = 0; i < listaPais.size(); i++) {
-            //Texto-Primeras tres letras
+
             canvas.drawText(listaPais.get(i), 0,3,0.15f*ancho +espacios, 0.85f*alto, pincel2);
-            //barras
+
             canvas.drawRect(0.15f*ancho + espacios,
                     0.8f*alto-(0.6f*alto* listPlace.get(i).floatValue()/limiteMaximo),
                     0.15f*ancho + espacios+parts, 0.8f*alto, pincel1);
             espacios += parts*2;
         }
-        //****************************************************
+
     }
 
     public void ingresandoDatos(){
-        //datos del excel
-        //"Casa","Espacio Urbano","Centro Educativo","Centro Trabajo","Centro deportivo","Parques","Otros"
 
-        limiteMaximo = AppDataBase.getInstance(getContext()).historyDao().getAmountPlasticAll(1);
-        List<PlasticHistory> a = AppDataBase.getInstance(getContext()).historyDao().getAllId(1);
+        SharedPreferences preferences = getContext().getSharedPreferences("credenciales", Context.MODE_PRIVATE);
+        int id = preferences.getInt("id",0);
+
+        limiteMaximo = AppDataBase.getInstance(getContext()).historyDao().getAmountPlasticAll(id);
+        List<PlasticHistory> a = AppDataBase.getInstance(getContext()).historyDao().getAllId(id);
 
         for (int i = 0 ; i < a.size(); i++) {
             this.listaPais.add(a.get(i).getPlasticType());
@@ -120,30 +120,5 @@ public class BarView extends View {
         }
 
     }
-/*
-    private void readExcel(String fileName) {
-        try {
-            InputStream myFile = new FileInputStream(new File(fileName));
-            HSSFWorkbook wb = new HSSFWorkbook(myFile);
-            HSSFSheet sheet = wb.getSheetAt(1);
-            HSSFCell cell;
-            HSSFRow row;
-            //Contar filas
-            // System.out.println("" + sheet.getLastRowNum());
-            //empieza en 1 para no leer las cabeceras
-            for (int i = 1; i < sheet.getLastRowNum() + 1; i++) {
-                row = sheet.getRow(i);
-                for (int j = 0; j < row.getLastCellNum(); j++) {
-                    cell = row.getCell(j);
-                    if(j % 2 == 0){
-                        listaPais.add(cell.toString());
-                    }else{
-                        listaTNatalidad.add(Double.parseDouble(cell.toString()));
-                    }
-                }
-            }
-        } catch (Exception e) {
-            Log.d("Debug ",e.getMessage());
-        }
-    }*/
+
 }
