@@ -116,7 +116,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
-        android:id="@+id/editar"
+        android:id="@+id/editarperfil"
         android:layout_width="131dp"
         android:layout_height="44dp"
         android:layout_marginBottom="124dp"

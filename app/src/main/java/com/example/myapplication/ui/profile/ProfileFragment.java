@@ -34,7 +34,7 @@ public class ProfileFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
 
-        ImageView editar = view.findViewById(R.id.imageView7);
+        ImageView editar = view.findViewById(R.id.editar);
         editar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -39,7 +39,7 @@ public class EditarFragment extends Fragment {
     private Uri imagePath;
     private Bitmap imageToStore;
     private ImageView image;
-    private Button editar;
+    private Button editar,editPhoto;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -65,7 +65,8 @@ public class EditarFragment extends Fragment {
         nombres.setHint(user_data.getFirstName());
         email.setHint(user_data.getEmail());
         image = view.findViewById(R.id.imageUser);
-        Button editPhoto = view.findViewById(R.id.editphoto);
+        editPhoto = view.findViewById(R.id.editphoto);
+        editar = view.findViewById(R.id.editarperfil);
         editPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
