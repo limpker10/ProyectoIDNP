@@ -4,6 +4,7 @@ import static android.app.Activity.RESULT_OK;
 
 import static com.example.myapplication.database.BitmapManager.bitmapToByte;
 
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.database.sqlite.SQLiteConstraintException;
 import android.graphics.Bitmap;
@@ -34,10 +35,14 @@ import android.widget.Toast;
 import com.example.myapplication.R;
 import com.example.myapplication.database.AppDataBase;
 import com.example.myapplication.database.entities.PlasticHistory;
+import com.example.myapplication.ui.notifications.CustomService;
 import com.google.android.material.textfield.TextInputLayout;
 
 
 public class CameraFragment extends Fragment {
+
+    private static final String CHANNEL_ID = "canal";
+    private PendingIntent pendingIntent;
 
     ImageView imageView;
     String[] items = AppDataBase.getInstance(getContext()).plasticDao().getAllName();
@@ -87,11 +92,12 @@ public class CameraFragment extends Fragment {
                 try {
                     AppDataBase.getInstance(getContext()).historyDao().insertAll(new PlasticHistory(1,itemTyplePlastic,itemPlace,cantidad,bitmapToByte(imgBitmap)));
                     Toast.makeText(getContext(), "Registro Exitoso", Toast.LENGTH_SHORT).show();
+                    sendOnChannelHigh();
+                    Navigation.findNavController(view).navigate(R.id.navigation_home);
                 }catch ( SQLiteConstraintException ex) {
                     Toast.makeText(getContext(), ex.getMessage(), Toast.LENGTH_SHORT).show();
                 }
-                //Toast.makeText(getContext(), "Registro Exitoso", Toast.LENGTH_SHORT).show();
-                //AppDataBase.getInstance(getContext()).historyDao().insertAll(new PlasticHistory());
+
             }
         });
     }
@@ -131,4 +137,10 @@ public class CameraFragment extends Fragment {
             }
         });
     }
+
+
+    public void sendOnChannelHigh() {
+        CustomService.getInstance().createNotification2(getContext(),"nueva notificacion","Agregaste unb nuevo plastico felicidades");
+    }
+
 }

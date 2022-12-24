@@ -33,6 +33,12 @@ public class PlasticHistory implements Serializable {
     @ColumnInfo(name = "amount")
     private int amount;
 
+    @ColumnInfo(name = "month")
+    private String month;
+
+    @ColumnInfo(name = "year")
+    private String year;
+
     @ColumnInfo(name = "image", typeAffinity = ColumnInfo.BLOB)
     private byte[] image;
 
@@ -98,5 +104,21 @@ public class PlasticHistory implements Serializable {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public String getMonth() {
+        return month;
+    }
+
+    public void setMonth(String month) {
+        this.month = month;
+    }
+
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
     }
 }

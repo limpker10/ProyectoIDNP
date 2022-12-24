@@ -23,6 +23,9 @@ public interface UserDao {
     @Query("SELECT * FROM user WHERE user_email LIKE :email AND " + "password LIKE :password LIMIT 1")
     User findByEmail(String email, String password);
 
+    @Query("UPDATE user SET user_image=:image WHERE uid = :id")
+    void update(byte[] image, int id);
+
     @Insert
     void insertAll(User users);
 

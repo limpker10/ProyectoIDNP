@@ -7,12 +7,13 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
     <!--colors for modern ui-->
     <color name="whiteTextColor">#fff</color>
     <color name="primaryTextColor">#00a5ff</color>
     <color name="loginBkColor">#f0f0f0</color>
 
-    <!--colros for card-->
+    <!--colores-->
     <color name="whiteCardColor">#fff</color>
     <color name="Color1">#005954</color>
     <color name="Color2">#338B85</color>

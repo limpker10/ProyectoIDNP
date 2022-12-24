@@ -8,29 +8,28 @@
     android:orientation="vertical"
     tools:context=".ui.dashboard.DashboardFragment">
 
-
     <com.example.myapplication.ui.dashboard.DonutsView
         android:id="@+id/graficoCircularVista"
-        android:layout_width="336dp"
-        android:layout_height="263dp"
-        android:background="@color/Color1"
+        android:layout_width="302dp"
+        android:layout_height="302dp"
+        android:background="@drawable/circular_border_secondary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.277"></com.example.myapplication.ui.dashboard.DonutsView>
+        app:layout_constraintVertical_bias="0.074"/>
 
     <com.example.myapplication.ui.dashboard.BarView
-        android:id="@+id/bar_view"
-        android:layout_width="336dp"
-        android:layout_height="263dp"
+        android:id="@+id/graficoBarrasVista"
+        android:layout_width="302dp"
+        android:layout_height="302dp"
+        android:background="@drawable/circular_border_secondary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.92"></com.example.myapplication.ui.dashboard.BarView>
-
+        app:layout_constraintTop_toBottomOf="@+id/graficoCircularVista"
+        app:layout_constraintVertical_bias="0.229"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

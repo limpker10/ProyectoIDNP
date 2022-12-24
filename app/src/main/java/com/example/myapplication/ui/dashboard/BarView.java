@@ -4,195 +4,146 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Rect;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
+import androidx.annotation.Nullable;
+
+import com.example.myapplication.database.AppDataBase;
+import com.example.myapplication.database.entities.PlasticHistory;
+
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 
 public class BarView extends View {
-    private ArrayList<Float> percentList;
-    private ArrayList<Float> targetPercentList;
-    private Paint textPaint;
-    private Paint bgPaint;
-    private Paint fgPaint;
-    private Rect rect;
-    private int barWidth;
-    //    private boolean showSideMargin = true;
-    private int bottomTextDescent;
-    private boolean autoSetWidth = true;
-    private int topMargin;
-    private int bottomTextHeight;
-    private ArrayList<String> bottomTextList = new ArrayList<String>();
-    private final int MINI_BAR_WIDTH;
-    private final int BAR_SIDE_MARGIN;
-    private final int TEXT_TOP_MARGIN;
-    private final int TEXT_COLOR = Color.parseColor("#9B9A9B");
-    private final int BACKGROUND_COLOR = Color.parseColor("#F6F6F6");
-    private final int FOREGROUND_COLOR = Color.parseColor("#7a2a2a");
 
-    private Runnable animator = new Runnable() {
-        @Override
-        public void run() {
-            boolean needNewFrame = false;
-            for (int i=0; i<targetPercentList.size();i++) {
-                if (percentList.get(i) < targetPercentList.get(i)) {
-                    percentList.set(i,percentList.get(i)+0.02f);
-                    needNewFrame = true;
-                } else if (percentList.get(i) > targetPercentList.get(i)){
-                    percentList.set(i,percentList.get(i)-0.02f);
-                    needNewFrame = true;
-                }
-                if(Math.abs(targetPercentList.get(i)-percentList.get(i))<0.02f){
-                    percentList.set(i,targetPercentList.get(i));
-                }
-            }
-            if (needNewFrame) {
-                postDelayed(this, 20);
-            }
-            invalidate();
-        }
-    };
 
-    public BarView(Context context){
-        this(context,null);
-    }
-    public BarView(Context context, AttributeSet attrs){
+    private ArrayList<String> listaPais = new ArrayList<>();
+    private ArrayList<Double> listPlace = new ArrayList<>();
+    private int limiteMaximo;
+
+    public BarView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        bgPaint = new Paint();
-        bgPaint.setAntiAlias(true);
-        bgPaint.setColor(BACKGROUND_COLOR);
-        fgPaint = new Paint(bgPaint);
-        fgPaint.setColor(FOREGROUND_COLOR);
-        rect = new Rect();
-        topMargin = MyUtils.dip2px(context, 5);
-        int textSize = MyUtils.sp2px(context, 15);
-        barWidth = MyUtils.dip2px(context,22);
-        MINI_BAR_WIDTH = MyUtils.dip2px(context,22);
-        BAR_SIDE_MARGIN  = MyUtils.dip2px(context,22);
-        TEXT_TOP_MARGIN = MyUtils.dip2px(context, 5);
-        textPaint = new Paint();
-        textPaint.setAntiAlias(true);
-        textPaint.setColor(TEXT_COLOR);
-        textPaint.setTextSize(textSize);
-        textPaint.setTextAlign(Paint.Align.CENTER);
-        percentList = new ArrayList<Float>();
-    }
-
-
-    public void setBottomTextList(ArrayList<String> bottomStringList){
-        this.bottomTextList = bottomStringList;
-        Rect r = new Rect();
-        bottomTextDescent = 0;
-        barWidth = MINI_BAR_WIDTH;
-        for(String s:bottomTextList){
-            textPaint.getTextBounds(s,0,s.length(),r);
-            if(bottomTextHeight<r.height()){
-                bottomTextHeight = r.height();
-            }
-            if(autoSetWidth&&(barWidth<r.width())){
-                barWidth = r.width();
-            }
-            if(bottomTextDescent<(Math.abs(r.bottom))){
-                bottomTextDescent = Math.abs(r.bottom);
-            }
-        }
-        setMinimumWidth(2);
-        postInvalidate();
-    }
-
-    public void setDataList(ArrayList<Integer> list, int max){
-        targetPercentList = new ArrayList<Float>();
-        if(max == 0) max = 1;
-
-        for(Integer integer : list){
-            targetPercentList.add(1-(float)integer/(float)max);
-        }
-        if(percentList.isEmpty() || percentList.size()<targetPercentList.size()){
-            int temp = targetPercentList.size()-percentList.size();
-            for(int i=0; i<temp;i++){
-                percentList.add(1f);
-            }
-        } else if (percentList.size()>targetPercentList.size()){
-            int temp = percentList.size()-targetPercentList.size();
-            for(int i=0; i<temp;i++){
-                percentList.remove(percentList.size()-1);
-            }
-        }
-        setMinimumWidth(2);
-        removeCallbacks(animator);
-        post(animator);
+        this.limiteMaximo = Integer.MAX_VALUE;
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
-        int i = 1;
-        if(percentList != null && !percentList.isEmpty()){
-            for(Float f:percentList){
-                rect.set(BAR_SIDE_MARGIN*i+barWidth*(i-1),
-                        topMargin,
-                        (BAR_SIDE_MARGIN+barWidth)* i,
-                        getHeight()-bottomTextHeight-TEXT_TOP_MARGIN);
-                canvas.drawRect(rect,bgPaint);
+        super.onDraw(canvas);
 
-                rect.set(BAR_SIDE_MARGIN*i+barWidth*(i-1),
-                        topMargin+(int)((getHeight()-topMargin-bottomTextHeight-TEXT_TOP_MARGIN)*percentList.get(i-1)),
-                        (BAR_SIDE_MARGIN+barWidth)* i,
-                        getHeight()-bottomTextHeight-TEXT_TOP_MARGIN);
-                canvas.drawRect(rect,fgPaint);
-                i++;
+        ingresandoDatos();
+
+        //recibiendo el ancho y alto
+        int ancho = getWidth();
+        int alto = getHeight();
+
+        Paint pincel1 = new Paint();
+        pincel1.setColor(Color.RED);
+
+        Paint pincel2 = new Paint();
+        pincel2.setColor(Color.BLACK);
+        pincel2.setStrokeWidth(3);
+
+        //solo texto
+        pincel2.setTextSize(40);
+
+        canvas.drawText("Tasa de Natalidad", 0.25f*ancho,
+                0.1f*alto, pincel2);
+
+        //solo texto
+        pincel2.setTextSize(22);
+
+        //lineas de grafico de barras***************************************************
+        canvas.drawLine(0.15f*ancho, 0.2f*alto, 0.15f*ancho, 0.8f*alto, pincel2);
+        canvas.drawLine(0.15f*ancho, 0.8f*alto, 0.85f*ancho, 0.8f*alto, pincel2);
+
+        //lineas de medicion de la grafica***********************************************
+        pincel2.setStrokeWidth(1);
+        for (int i = 0; i < 10; i++){
+            float yLine = 0.2f*alto + (0.06f)*alto*(i);
+            //numeros de la eje y
+            canvas.drawText(""+(limiteMaximo/10)*(10-i), 0.1f*ancho, yLine, pincel2);
+
+            canvas.drawLine(0.15f*ancho, yLine,
+                    0.85f*ancho, yLine,
+                    pincel2);
+        }
+
+        //leyenda***********************************************
+        canvas.drawRect(0.34f*ancho,0.92f*alto,
+                0.36f*ancho, 0.94f*alto, pincel1);
+        canvas.drawText("Tasa de Natalidad", 0.38f*ancho,
+                0.94f*alto, pincel2);
+
+        //****************************************************
+        //creando las barras y etiquetas
+        float parts = (0.70f*ancho)/((float)listaPais.size()*2 + 1f);
+
+        float espacios = parts;
+
+        for (int i = 0; i < listaPais.size(); i++) {
+            //Texto-Primeras tres letras
+            canvas.drawText(listaPais.get(i), 0,3,0.15f*ancho +espacios, 0.85f*alto, pincel2);
+            //barras
+            canvas.drawRect(0.15f*ancho + espacios,
+                    0.8f*alto-(0.6f*alto* listPlace.get(i).floatValue()/limiteMaximo),
+                    0.15f*ancho + espacios+parts, 0.8f*alto, pincel1);
+            espacios += parts*2;
+        }
+        //****************************************************
+    }
+
+    public void ingresandoDatos(){
+        //datos del excel
+        //"Casa","Espacio Urbano","Centro Educativo","Centro Trabajo","Centro deportivo","Parques","Otros"
+
+        limiteMaximo = AppDataBase.getInstance(getContext()).historyDao().getAmountPlasticAll(1);
+        List<PlasticHistory> a = AppDataBase.getInstance(getContext()).historyDao().getAllId(1);
+
+        for (int i = 0 ; i < a.size(); i++) {
+            this.listaPais.add(a.get(i).getPlasticType());
+        }
+        Set<String> hashSet = new HashSet<String>(listaPais);
+        listaPais.clear();
+        listaPais.addAll(hashSet);
+
+        for (int i = 0 ; i < listaPais.size(); i++){
+            //this.listaPais.add(a.get(i).getPlasticType());
+            int can = AppDataBase.getInstance(getContext()).historyDao().getAmountByPlastic(listaPais.get(i));
+            if(can != 0){
+                listPlace.add((double) (can) );
             }
         }
 
-        if(bottomTextList != null && !bottomTextList.isEmpty()){
-            i = 1;
-            for(String s:bottomTextList){
-                canvas.drawText(s,BAR_SIDE_MARGIN*i+barWidth*(i-1)+barWidth/2,
-                        getHeight()-bottomTextDescent,textPaint);
-                i++;
+    }
+/*
+    private void readExcel(String fileName) {
+        try {
+            InputStream myFile = new FileInputStream(new File(fileName));
+            HSSFWorkbook wb = new HSSFWorkbook(myFile);
+            HSSFSheet sheet = wb.getSheetAt(1);
+            HSSFCell cell;
+            HSSFRow row;
+            //Contar filas
+            // System.out.println("" + sheet.getLastRowNum());
+            //empieza en 1 para no leer las cabeceras
+            for (int i = 1; i < sheet.getLastRowNum() + 1; i++) {
+                row = sheet.getRow(i);
+                for (int j = 0; j < row.getLastCellNum(); j++) {
+                    cell = row.getCell(j);
+                    if(j % 2 == 0){
+                        listaPais.add(cell.toString());
+                    }else{
+                        listaTNatalidad.add(Double.parseDouble(cell.toString()));
+                    }
+                }
             }
+        } catch (Exception e) {
+            Log.d("Debug ",e.getMessage());
         }
-    }
-
-    @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        int mViewWidth = measureWidth(widthMeasureSpec);
-        int mViewHeight = measureHeight(heightMeasureSpec);
-        setMeasuredDimension(mViewWidth,mViewHeight);
-    }
-
-    private int measureWidth(int measureSpec){
-        int preferred = 0;
-        if(bottomTextList != null){
-            preferred = bottomTextList.size()*(barWidth+BAR_SIDE_MARGIN);
-        }
-        return getMeasurement(measureSpec, preferred);
-    }
-
-    private int measureHeight(int measureSpec){
-        int preferred = 222;
-        return getMeasurement(measureSpec, preferred);
-    }
-
-    private int getMeasurement(int measureSpec, int preferred){
-        int specSize = MeasureSpec.getSize(measureSpec);
-        int measurement;
-        switch(MeasureSpec.getMode(measureSpec)){
-            case MeasureSpec.EXACTLY:
-                measurement = specSize;
-                break;
-            case MeasureSpec.AT_MOST:
-                measurement = Math.min(preferred, specSize);
-                break;
-            default:
-                measurement = preferred;
-                break;
-        }
-        return measurement;
-    }
-
-
-
-
+    }*/
 }

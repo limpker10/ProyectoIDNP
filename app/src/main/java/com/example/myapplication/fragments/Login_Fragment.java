@@ -15,7 +15,6 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +28,6 @@ import com.example.myapplication.R;
 import com.example.myapplication.database.AppDataBase;
 import com.example.myapplication.database.dao.UserDao;
 import com.example.myapplication.database.entities.User;
-import com.example.myapplication.properties;
 import com.google.android.material.textfield.TextInputLayout;
 
 
@@ -58,7 +56,7 @@ public class Login_Fragment extends Fragment {
         inicializarElementos();
 
         if (revisarSession()){
-            preferences = this.getActivity().getSharedPreferences("credenciasles", Context.MODE_PRIVATE);
+            preferences = this.getActivity().getSharedPreferences("credenciales", Context.MODE_PRIVATE);
             int id = preferences.getInt("id",0);
 
             Bundle result = new Bundle();
@@ -116,7 +114,7 @@ public class Login_Fragment extends Fragment {
         return this.preferences.getBoolean("session",false);
     }
     private void inicializarElementos(){
-        preferences = this.getActivity().getSharedPreferences("credenciasles", Context.MODE_PRIVATE);
+        preferences = this.getActivity().getSharedPreferences("credenciales", Context.MODE_PRIVATE);
         editor = preferences.edit();
     }
 

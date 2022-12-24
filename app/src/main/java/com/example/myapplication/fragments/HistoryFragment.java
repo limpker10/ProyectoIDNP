@@ -1,5 +1,7 @@
 package com.example.myapplication.fragments;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -31,7 +33,9 @@ public class HistoryFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_history, container, false);
         recyclerView = view.findViewById(R.id.recyclerViewHistory);
-        elements = AppDataBase.getInstance(getContext()).historyDao().getAllId(1);
+        SharedPreferences preferences = this.getActivity().getSharedPreferences("credenciales", Context.MODE_PRIVATE);
+        int id = preferences.getInt("id",0);
+        elements = AppDataBase.getInstance(getContext()).historyDao().getAllId(id);
         historyAdapter = new HistoryAdapter(elements,getContext());
 
         recyclerView.setHasFixedSize(true);

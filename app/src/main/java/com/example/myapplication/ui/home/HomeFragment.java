@@ -2,6 +2,7 @@ package com.example.myapplication.ui.home;
 
 import static com.example.myapplication.database.BitmapManager.byteToBitmap;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -23,6 +24,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentResultListener;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
+import androidx.room.Database;
 
 import com.example.myapplication.R;
 import com.example.myapplication.database.AppDataBase;
@@ -34,12 +36,16 @@ public class HomeFragment extends Fragment {
     private User user_data;
     private FragmentHomeBinding binding;
     private static final String TAG = "ErrorUser";
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         loadDataUser(view);
         ConstraintLayout registrarProducto = view.findViewById(R.id.registrarProducto);
         ConstraintLayout historial = view.findViewById(R.id.infolist);
+        TextView a = getView().findViewById(R.id.cantidad_plastico);
+        int cant = AppDataBase.getInstance(getContext()).historyDao().getAmountPlasticAll(user_data.getUid());
+        a.setText(Integer.toString(cant));
         registrarProducto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -60,7 +66,6 @@ public class HomeFragment extends Fragment {
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-        Log.i(TAG, "fragment home");
         return root;
     }
 
@@ -86,7 +91,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void cargarPreferencias(){
-        SharedPreferences preferences = this.getActivity().getSharedPreferences("credenciasles", Context.MODE_PRIVATE);
+        SharedPreferences preferences = this.getActivity().getSharedPreferences("credenciales", Context.MODE_PRIVATE);
         int id = preferences.getInt("id",0);
         Log.i(TAG, "cargando credenciales");
         user_data = AppDataBase.getInstance(getContext()).userDao().findById(id);

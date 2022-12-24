@@ -20,7 +20,7 @@ import com.example.myapplication.database.entities.PlasticHistory;
 import com.example.myapplication.database.entities.PlasticType;
 import com.example.myapplication.database.entities.User;
 
-@Database(entities = {User.class, PlasticType.class, PlasticHistory.class}, version = 2_2)
+@Database(entities = {User.class, PlasticType.class, PlasticHistory.class}, version = 2_3)
 public abstract class AppDataBase extends RoomDatabase {
 
     private static final Object LOCK = new Object();

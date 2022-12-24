@@ -6,24 +6,34 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.util.AttributeSet;
 
+import android.util.Log;
 import android.view.View;
 
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
+import com.example.myapplication.database.AppDataBase;
+import com.example.myapplication.database.entities.PlasticHistory;
+
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @RequiresApi(api = Build.VERSION_CODES.O)
 public class DonutsView extends View {
 
-    private ArrayList<String> listaPais = new ArrayList<>();
-    private ArrayList<Double> listaTNatalidad = new ArrayList<>();
+    private List<String> listaPais = new ArrayList();;
+    private List<Double> listPlace = new ArrayList();;
     private ArrayList<Color> listaColores = new ArrayList();
     private int ancho;
+    private static final String TAG = "donuts";
     private int alto;
     private float radio;
 
@@ -40,35 +50,20 @@ public class DonutsView extends View {
 
         ingresandoDatos();
 
-        //recibiendo el ancho y alto
         this.ancho = getWidth();
         this.alto = getHeight();
 
-        //pintar fondo
-        canvas.drawRGB(240, 240, 240);
-        //pincel negro
         Paint pincelNegro = new Paint();
-        pincelNegro.setColor(Color.BLACK);
-        //pincel de pais
+        pincelNegro.setColor(Color.WHITE);
         Paint colorPais = new Paint();
-        //leyenda
         leyendaCirculo(canvas, colorPais, pincelNegro);
-
-        //viendo tamaño de circulo
-        //canvas.drawCircle((0.10f+ radio)*ancho, (0.25f+ radio)*alto, radio*ancho, pincel1);
-
-        //requiere de una API 26(el minimo es 21) - Android 8.0 para arriba
         creandoGraficoCircular(canvas, pincelNegro, colorPais);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void creandoGraficoCircular(Canvas canvas, Paint pincelNegro, Paint colorPais){
-        //el tamanio del segemnto del circulo medido con un rectangulo
-        RectF rectangulo = new RectF(0.1f*ancho, 0.25f*alto, 0.7f*ancho, 0.85f*alto);
 
-        //true: segmento contando el centro
-        //false: segmento sin contar el centro
-        //canvas.drawArc(rectangulo, 0.0f, 90.0f, true, pincel1);
+        RectF rectangulo = new RectF(0.1f*ancho, 0.25f*alto, 0.7f*ancho, 0.85f*alto);
 
         float sumaAngulos = 0.0f;
         float sweepAngle = 0.0f;
@@ -76,34 +71,31 @@ public class DonutsView extends View {
 
         pincelNegro.setFakeBoldText(true);
 
-        for(int i = 0; i < 3; i++){
-            sweepAngle = listaTNatalidad.get(i).floatValue()*360.0f/100.0f;
+        for(int i = 0; i < listPlace.size(); i++){
+            sweepAngle = listPlace.get(i).floatValue()*360.0f/100.0f;
             colorPais.setColor(listaColores.get(i).toArgb());
             //pintando grafico
             canvas.drawArc(rectangulo, sumaAngulos, sweepAngle,true, colorPais);
             //porcentajes(texto) dentro del grafico
-            xy = textoPorcentajeGrafico(sumaAngulos, sweepAngle);
-
-            canvas.drawText(listaTNatalidad.get(i)+"%", xy[0], xy[1],pincelNegro);
             //contador
-            sumaAngulos += listaTNatalidad.get(i).floatValue()*360.0f/100.0f;
+            sumaAngulos += listPlace.get(i).floatValue()*360.0f/100.0f;
         }
-        //requiere de una API 26(el minimo es 21) - Android 8.0 para arriba
-        circuloInteriorGrafico(canvas);
+
+
+
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void leyendaCirculo(Canvas canvas, Paint colorPais, Paint pincelNegro) {
-        //grosor de pincel. No funciona con el texto
+        Typeface tf = Typeface.create("poppings",Typeface.BOLD);
+        pincelNegro.setTypeface(tf);
         pincelNegro.setStrokeWidth(3);
-        //solo texto
-        pincelNegro.setTextSize(40);
+        pincelNegro.setTextSize(50);
 
-        canvas.drawText("Tasa de Natalidad", 0.25f*ancho,
+        canvas.drawText("Lugares de Recoleccion", 0.25f*ancho,
                 0.1f*alto, pincelNegro);
 
-        //cambiando pincel
-        pincelNegro.setTextSize(22);
+        pincelNegro.setTextSize(27);
         pincelNegro.setStrokeWidth(1);
 
         //leyenda
@@ -114,19 +106,6 @@ public class DonutsView extends View {
             canvas.drawText(listaPais.get(i), 0.79f*ancho,
                     (0.27f + 0.04f * i)*alto, pincelNegro);
         }
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    private void circuloInteriorGrafico(Canvas canvas){
-        //dibujando circulo del interior del grafico
-        Paint colorCirculoInterior = new Paint();
-        //requiere de una API 26(el minimo es 21) - Android 8.0 para arriba
-
-        Color color = Color.valueOf(Color.rgb(240, 240, 240));
-        colorCirculoInterior.setColor(color.toArgb());
-
-        canvas.drawCircle((0.10f+ radio)*ancho, (0.25f+ radio)*alto,
-                (radio/2.5f)*ancho, colorCirculoInterior);
     }
 
     private float[] textoPorcentajeGrafico(float startAngle, float sweepAngle) {
@@ -143,18 +122,31 @@ public class DonutsView extends View {
         return xy;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     public void ingresandoDatos(){
         //datos del excel
-        this.listaPais.add("Argentina");
-        this.listaTNatalidad.add(30.0);
-        this.listaPais.add("Bolivia");
-        this.listaTNatalidad.add(30.0);
-        this.listaPais.add("Brasil");
-        this.listaTNatalidad.add(40.0);
+        //"Casa","Espacio Urbano","Centro Educativo","Centro Trabajo","Centro deportivo","Parques","Otros"
 
+        int cantidad = AppDataBase.getInstance(getContext()).historyDao().getAmountPlasticAll(1);
+        List<PlasticHistory> a = AppDataBase.getInstance(getContext()).historyDao().getAllId(1);
+
+        for (int i = 0 ; i < a.size(); i++) {
+            this.listaPais.add(a.get(i).getPlasticType());
+        }
+        Set<String> hashSet = new HashSet<String>(listaPais);
+        listaPais.clear();
+        listaPais.addAll(hashSet);
+
+        for (int i = 0 ; i < listaPais.size(); i++){
+            //this.listaPais.add(a.get(i).getPlasticType());
+            int can = AppDataBase.getInstance(getContext()).historyDao().getAmountByPlastic(listaPais.get(i));
+            if(can != 0){
+                Log.i(TAG, "MyClass.getView() — get item number " + (double) (can*100)/cantidad);
+                listPlace.add((double) (can*100)/cantidad );
+            }
+        }
         colorDePaises();
     }
+
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void colorDePaises() {
@@ -171,4 +163,6 @@ public class DonutsView extends View {
             listaColores.add(color);
         }
     }
+
+
 }

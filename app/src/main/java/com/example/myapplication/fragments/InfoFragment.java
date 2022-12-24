@@ -17,7 +17,6 @@ import com.example.myapplication.R;
 import com.example.myapplication.adapters.InfoAdapter;
 import com.example.myapplication.database.AppDataBase;
 import com.example.myapplication.database.entities.PlasticType;
-import com.example.myapplication.properties;
 
 import java.util.ArrayList;
 import java.util.List;
